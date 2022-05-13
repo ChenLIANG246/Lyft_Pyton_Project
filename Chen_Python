@@ -1,0 +1,17 @@
+from flask import Flask, request, jsonify
+app = Flask(_name_)
+
+# Takes in a string
+# Returns a string containing every third letter from the original string
+@app.route('/test', methods=['POST'])
+def cut_and_send_string():
+    json_payload = request.json
+    string_to_cut = json_payload["string_to_cut"]
+    cut_string_response = ''
+    if len(string_to_cut) >= 3: # Return empty string if too short
+        for i in range(3, len(string_to_cut) + 1, 3):
+            cut_string_response += string_to_cut[i - 1]
+    return jsonify({'return_string': cut_string_response})
+
+if _name_ == '_main_':
+    app.run()
